@@ -1,0 +1,11 @@
+/**
+ * --- START ARTICLE -----------------------------------------------------------
+ */
+.app-article-pubdate {
+  font-size: 0.75rem;
+}
+.app-article-tag,
+.app-article-comment-count {
+  font-size: 0.625rem;
+}
+/* --- END ARTICLE ---------------------------------------------------------- */

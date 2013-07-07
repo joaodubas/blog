@@ -5,28 +5,42 @@
   <title>Personal blog</title>
   <meta name="viewport"
       content="width=device-width, initial-scale=1, maximum-scale=1">
+  <link rel="stylesheet"
+      href="/static/bower_components/bootstrap/docs/assets/css/bootstrap.css">
+  <link rel="stylesheet"
+      href="/static/bower_components/bootstrap/docs/assets/css/bootstrap-responsive.css">
+  <link rel="stylesheet" href="/static/css/app.css">
 </head>
-<body>
-  <div class="content">
-    <section>
+<body class="container-fluid">
+  <div class="app-content row-fluid">
+    <section class="span8">
       <article>
         <header>
-          <time pubtime date="">2013.07.07</time>
-          <h2>Título do post</h2>
+          <time class="pull-right muted app-article-pubdate" pubdate datetime="2013-07-07 00:00">2013.07.07</time>
+          <h2>Usando TingoDB</h2>
         </header>
-        <p>Corpo do texto</p>
+        <p><a href="http://www.tingodb.com">TingoDB</a> é um banco de dados
+          NoSQL embedeado para Node.js e node-webkit. Sua API e caraterísticas
+          foram desenhadas para serem compatíveis com o MongoDB e seus drivers
+          para Node.js.</p>
         <footer>
-          <p><a href="">Leia mais</a></p>
-          <p>Tags:
-            <ul>
-              <li></li>
-            </ul>
-          </p>
-          <p><a href="/">Comentários: #</a></p>
+          <p><a href="#">Leia mais</a></p>
+          <div class="row-fluid app-article-meta">
+            <div class="span8">Tags:
+              <ul class="inline">
+                <li><a href="tags/" class="label label-info app-article-tag">nosql</a></li>
+                <li><a href="tags/" class="label label-info app-article-tag">banco de dados</a></li>
+                <li><a href="tags/" class="label label-info app-article-tag">node.js</a></li>
+                <li><a href="tags/" class="label label-info app-article-tag">mongodb</a></li>
+                <li><a href="tags/" class="label label-info app-article-tag">tingodb</a></li>
+              </ul>
+            </div>
+            <div class="span4"><a href="/">Comentários: <span class="badge app-article-comment-count">#<span></a></div>
+          </div>
         </footer>
       </article>
     </section>
-    <aside>
+    <aside class="span4">
       <nav>
         <ul>
           <li><a href=""></a></li>
@@ -43,8 +57,10 @@
       </nav>
     </aside>
   </div>
-  <footer>
-    &copy; João Paulo Dubas, 2013.
+  <footer class="row-fluid">
+    <div class="span12">
+      &copy; João Paulo Dubas, 2013.
+    </div>
   </footer>
 </body>
 </html>
