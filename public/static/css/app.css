@@ -9,3 +9,27 @@
   font-size: 0.625rem;
 }
 /* --- END ARTICLE ---------------------------------------------------------- */
+
+/**
+ * --- START ASIDE -------------------------------------------------------------
+ */
+.app-aside-myself {
+  position: relative;
+}
+.app-aside-myself figcaption {
+  background: rgb(75, 75, 75);
+  background: rgba(75, 75, 75, 0.75);
+  border-bottom-left-radius: 6px;
+  color: #fff;
+  font-size: 0.75rem;
+  text-align: right;
+  text-shadow: 0 -1px 0 rgba(0, 0, 0, 0.25);
+  padding: 0.375em;
+  position: absolute; bottom: 0;
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  -ms-box-sizing: border-box;
+  -o-box-sizing: border-box;
+  box-sizing: border-box;
+}
+/* --- END ASIDE ------------------------------------------------------------ */
