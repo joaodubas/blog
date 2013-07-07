@@ -1,0 +1,28 @@
+{
+  "name": "personal-log",
+  "author": "João Paulo Dubas <joao.dubas@gmail.com>",
+  "version": "0.0.1",
+  "description": "Personal blog system",
+  "private": true,
+  "bin": {
+    "server": "./bin/server"
+  },
+  "scripts": {
+    "start": "node ./bin/server",
+    "prepublish": "./node_modules/.bin/bower install"
+  },
+  "keywords": [
+    "blog",
+    "post"
+  ],
+  "dependencies": {
+    "http-server": "0.5.x"
+  },
+  "devDependencies": {
+    "bower": "0.10.x"
+  },
+  "license": "MIT",
+  "engine": {
+    "node": ">=0.10.0"
+  }
+}

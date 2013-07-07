@@ -1,0 +1,15 @@
+{
+  "name": "personal-blog",
+  "author": "João Paulo Dubas <joao.dubas@gmail.com>",
+  "version": "0.0.1",
+  "description": "Personal blog system.",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "public/static/bower_components"
+  ],
+  "dependencies": {
+    "bootstrap": "~2.3.2",
+    "requirejs": "~2.1.6"
+  }
+}

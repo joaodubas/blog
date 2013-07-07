@@ -1,0 +1,8 @@
+# folders
+node_modules
+public/static/bower_components
+
+# files
+npm-debug.log
+.tern-port
+*.swp
