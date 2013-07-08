@@ -5,10 +5,10 @@
   "description": "Personal blog system",
   "private": true,
   "bin": {
-    "server": "./bin/server"
+    "server": "NODE_PATH=lib node ./app.js"
   },
   "scripts": {
-    "start": "node ./bin/server",
+    "start": "NODE_PATH=lib node ./app.js",
     "prepublish": "./node_modules/.bin/bower install"
   },
   "keywords": [
@@ -16,7 +16,9 @@
     "post"
   ],
   "dependencies": {
-    "http-server": "0.5.x"
+    "express": "3.3.x",
+    "jade": "0.32.x",
+    "tingodb": "*"
   },
   "devDependencies": {
     "bower": "0.10.x"
