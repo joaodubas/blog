@@ -1,0 +1,54 @@
+!!! 5
+html
+  head
+    meta(charset="utf-8")
+    title Personal blog
+    meta(
+      name="viewport",
+      content="width=device-width, initial-scale=1, maximum-scale=1"
+    )
+    link(
+      rel="stylesheet",
+      href="/static/bower_components/bootstrap/docs/assets/css/bootstrap.css"
+    )
+    link(
+      rel="stylesheet",
+      href="/static/bower_components/bootstrap/docs/assets/css/bootstrap-responsive.css"
+    )
+    link(
+      rel="stylesheet",
+      href="/static/bower_components/font-awesome/css/font-awesome.min.css"
+    )
+    link(
+      rel="stylesheet",
+      href="/static/css/app.css"
+    )
+  body.container-fluid
+    .row-fluid.app-content
+      section.span8
+        block content
+      aside.span4
+        figure.app-aside-myself
+          img.img-rounded(
+            src="/static/img/me.png",
+            alt="João Paulo Dubas"
+          )
+          figcaption Sou eu o/
+        nav
+          ul.nav.nav-list
+            each item in navigation
+              li
+                a(href=item.href)
+                  i(class=['icon-fixed-width', item.icon])
+                  | #{item.text}
+            li.nav-header Pessoal
+            each item in personal
+              li
+                a(href=item.href)
+                  i(class=['icon-fixed-width', item.icon])
+                  | #{item.text}
+    footer.row-fluid
+      .span12
+        small.muted
+          | &copy; Copyright 2013,&nbsp;
+          a(href="/") João Paulo Dubas
