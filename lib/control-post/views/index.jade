@@ -2,3 +2,17 @@ extend ../../views/layout
 
 block content
   include ../../views/partial-post
+  #app-post-comments
+    form(method="POST", action="")
+      input(type="text", id="id_name", name="name", placeholder="Nome")
+      textarea(id="id_comment", name="comment", placeholder="Comentário")
+      .form-actions
+        button.btn.btn-primary(type="submit") Comentar
+    .app-comments
+      each comment in post.comments
+        .app-comment
+          span.push-right.muted
+            | #{comment.name} ' ('
+            | #{comment.createdAt().toISOString().split('T')[0]}
+          .app-comment-body
+            | #{comment.comment}
