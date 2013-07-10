@@ -9,7 +9,7 @@ article.app-article
           li
             i.icon-tags.muted(title='tags')
           each tag in post.tags
-            li: a.label.label-info.app-article-tag(href='tags/') #{tag}
+            li: a.label.label-info.app-article-tag(href='#') #{tag}
       .pull-right
         i.icon-fixed-width.icon-comment.muted(title='comentários')
         a.badge.app-article-comment-count(href='/post/#{post.slug}#comentarios')
