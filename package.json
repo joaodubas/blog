@@ -18,7 +18,9 @@
   "dependencies": {
     "express": "3.3.x",
     "jade": "0.32.x",
-    "tingodb": "*"
+    "tingodb": "0.1.x",
+    "slug": "0.3.x",
+    "marked": "0.2.x"
   },
   "devDependencies": {
     "bower": "0.10.x"
