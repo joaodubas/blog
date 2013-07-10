@@ -46,3 +46,11 @@
   margin-top: 10px; padding-top: 10px;
 }
 /* --- END COMMENT ---------------------------------------------------------- */
+
+@media (min-width: 1200px) {
+  .app-aside-info {
+    margin:0;
+    float: left;
+    width: 50%;
+  }
+}

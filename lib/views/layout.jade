@@ -23,32 +23,33 @@ html
       rel="stylesheet",
       href="/static/css/app.css"
     )
-  body.container-fluid
-    .row-fluid.app-content
-      section.span8
-        block content
-      aside.span4
-        figure.app-aside-myself
-          img.img-rounded(
-            src="/static/img/me.png",
-            alt="João Paulo Dubas"
-          )
-          figcaption Sou eu o/
-        nav
-          ul.nav.nav-list
-            each item in navigation
-              li
-                a(href=item.href)
-                  i(class=['icon-fixed-width', item.icon])
-                  | #{item.text}
-            li.nav-header Pessoal
-            each item in personal
-              li
-                a(href=item.href)
-                  i(class=['icon-fixed-width', item.icon])
-                  | #{item.text}
-    footer.row-fluid
-      .span12
-        small.muted
-          | &copy; Copyright 2013,&nbsp;
-          a(href="/") João Paulo Dubas
+  body
+    .container-fluid
+      .row-fluid.app-content
+        section.span8
+          block content
+        aside.span4
+          nav.app-aside-info.app-aside-nav
+            ul.nav.nav-list
+              each item in navigation
+                li
+                  a(href=item.href)
+                    i(class=['icon-fixed-width', item.icon])
+                    | #{item.text}
+              li.nav-header Pessoal
+              each item in personal
+                li
+                  a(href=item.href)
+                    i(class=['icon-fixed-width', item.icon])
+                    | #{item.text}
+          figure.app-aside-info.app-aside-myself
+            img.img-rounded(
+              src="/static/img/me.png",
+              alt="João Paulo Dubas"
+            )
+            figcaption Sou eu o/
+      footer.row-fluid
+        .span12
+          small.muted
+            | &copy; Copyright 2013,&nbsp;
+            a(href="/") João Paulo Dubas
