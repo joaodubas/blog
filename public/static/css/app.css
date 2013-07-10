@@ -8,6 +8,10 @@
 .app-article-comment-count {
   font-size: 0.625rem;
 }
+.app-article + .app-article {
+  border-top: 1px dotted #999;
+  margin-top: 20px;
+}
 /* --- END ARTICLE ---------------------------------------------------------- */
 
 /**
@@ -33,3 +37,12 @@
   box-sizing: border-box;
 }
 /* --- END ASIDE ------------------------------------------------------------ */
+
+/**
+ * --- START COMMENT -----------------------------------------------------------
+ */
+.app-comment + .app-comment {
+  border-top: 1px dotted #999;
+  margin-top: 10px; padding-top: 10px;
+}
+/* --- END COMMENT ---------------------------------------------------------- */
