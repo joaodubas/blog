@@ -17,8 +17,7 @@ block content
       .app-comments
         each comment in post.comments
           .app-comment
-            span.push-right.muted
-              | #{comment.name} ' ('
-              | #{comment.createdAt().toISOString().split('T')[0]}
+            i.muted
+              | #{comment.name} (#{comment.createdAt.toISOString().split('T')[0]})
             .app-comment-body
               | #{comment.comment}
