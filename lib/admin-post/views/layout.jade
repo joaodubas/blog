@@ -1,0 +1,41 @@
+!!!
+html
+  head
+    meta(charset="utf-8")
+    title Área administrativa
+    meta(
+      name="viewport",
+      content="width=device-width, initial-scale=1, maximum-scale=1"
+    )
+    link(
+      rel="stylesheet",
+      href="/static/bower_components/bootstrap/docs/assets/css/bootstrap.css"
+    )
+    link(
+      rel="stylesheet",
+      href="/static/bower_components/bootstrap/docs/assets/css/bootstrap-responsive.css"
+    )
+    link(
+      rel="stylesheet",
+      href="/static/bower_components/font-awesome/css/font-awesome.min.css"
+    )
+    link(
+      rel="stylesheet",
+      href="/static/css/admin.css"
+    )
+    block extra_css
+  body
+    header.navbar.navbar-static-top.navbar-inverse
+      nav.navbar-inner
+        .container-fluid
+          a.brand(href="/admin") Personal blog
+          ul.nav
+            li
+              a(href="/admin") Home
+            li
+              a(href="/admin") Posts
+    .container-fluid
+      .row-fluid
+        .span10.offset1
+          block content
+    block extra_js

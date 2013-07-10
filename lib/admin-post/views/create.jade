@@ -1,0 +1,16 @@
+extend layout
+
+block content
+  h2 Novo post
+  include partial-form
+
+block extra_css
+  link(
+    rel="stylesheet",
+    href="/static/bower_components/bootstrap-markdown/css/bootstrap-markdown.min.css"
+  )
+
+block extra_js
+  script(src="/static/bower_components/jquery/jquery.min.js")
+  script(src="/static/bower_components/markdown/lib/markdown.js")
+  script(src="/static/bower_components/bootstrap-markdown/js/bootstrap-markdown.js")

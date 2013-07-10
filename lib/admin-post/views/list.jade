@@ -1,0 +1,56 @@
+extend layout
+
+block content
+  table.table.table-striped.table-hover
+    thead
+      tr
+        th #
+        th titulo
+        th tags
+        th
+          a.btn.btn-mini.btn-primary(
+            href="/admin/new",
+            title="Adicionar"
+          )
+            i.icon-fixed-width.icon-plus
+    tfoot
+      tr
+        th #
+        th titulo
+        th tags
+        th
+          a.btn.btn-mini.btn-primary(
+            href="/admin/new",
+            title="Adicionar"
+          )
+            i.icon-fixed-width.icon-plus
+    tbody
+      each post in posts
+        tr
+          th #{post._id}
+          td #{post.title}
+          td
+            ul.inline
+              each tag in post.tags
+                li
+                  span.label.label-info #{tag}
+          td
+            form.form-inline.admin-form(
+              method="POST",
+              action="/admin/remove/#{post.slug}"
+            )
+              input(
+                type="hidden",
+                name="_method",
+                value="delete"
+              )
+              .btn-group
+                a.btn.btn-mini.btn-primary(
+                  href="/admin/edit/#{post.slug}",
+                  title="Editar"
+                )
+                  i.icon-fixed-width.icon-edit
+                button.btn.btn-mini.btn-danger(
+                  title="Remover"
+                )
+                  i.icon-fixed-width.icon-remove

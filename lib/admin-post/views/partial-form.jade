@@ -1,0 +1,52 @@
+form.form-horizontal(
+  method="post",
+  action=""
+)
+  if _override
+    input(
+      type="hidden",
+      name="_method",
+      value=_override
+    )
+  .control-group
+    label.control-label(for="id_title") Título
+    .controls
+      input#id_title(
+        name="title",
+        type="text",
+        placeholder="Título do post",
+        value=post.title
+      )
+  .control-group
+    label.control-label(for="id_markdown") Corpo
+    .controls
+      textarea#id_markdown(
+        name="markdown",
+        data-provide="markdown"
+      )
+        | #{post.markdown}
+  .control-group
+    label.control-label(for="id_publish") Publicar em
+    .controls
+      input#id_publish(
+        name="publishAt",
+        type="date",
+        placeholder="YYYY-MM-DD",
+        value=post.publishAtText)
+  .control-group
+    label.control-label(for="id_tags") Tags
+    .controls
+      input#id_tags(
+        name="tags",
+        type="text",
+        placeholder="Tags separadas por vírgula",
+        value=post.tagsText
+      )
+  .form-actions
+    .btn-group
+      button.btn.btn-primary(
+        type="submit"
+      ) Salvar
+      button.btn(
+        type="reset"
+      ) Limpar
