@@ -2,22 +2,3 @@ extend ../../views/layout
 
 block content
   include ../../views/partial-post
-  #app-post-comments
-    form(method="POST", action="")
-      fieldset
-        legend Comentários
-        .control-groups
-          input#id_name.span6(type="text", name="name", placeholder="Nome")
-        .control-groups
-          textarea#id_comment.span6(, name="comment", placeholder="Comentário")
-        .row-fluid
-          .span6
-            button.btn.btn-primary.pull-right(type="submit") Comentar
-    if post.comments
-      .app-comments
-        each comment in post.comments
-          .app-comment
-            i.muted
-              | #{comment.name} (#{comment.createdAt.toISOString().split('T')[0]})
-            .app-comment-body
-              | #{comment.comment}
