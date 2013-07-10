@@ -26,14 +26,6 @@ form.form-horizontal(
       )
         | #{post.markdown}
   .control-group
-    label.control-label(for="id_publish") Publicar em
-    .controls
-      input#id_publish(
-        name="publishAt",
-        type="date",
-        placeholder="YYYY-MM-DD",
-        value=post.publishAtText)
-  .control-group
     label.control-label(for="id_tags") Tags
     .controls
       input#id_tags(
