@@ -8,11 +8,12 @@ block content
       textarea(id="id_comment", name="comment", placeholder="Comentário")
       .form-actions
         button.btn.btn-primary(type="submit") Comentar
-    .app-comments
-      each comment in post.comments
-        .app-comment
-          span.push-right.muted
-            | #{comment.name} ' ('
-            | #{comment.createdAt().toISOString().split('T')[0]}
-          .app-comment-body
-            | #{comment.comment}
+    if post.comments
+      .app-comments
+        each comment in post.comments
+          .app-comment
+            span.push-right.muted
+              | #{comment.name} ' ('
+              | #{comment.createdAt().toISOString().split('T')[0]}
+            .app-comment-body
+              | #{comment.comment}
