@@ -3,17 +3,20 @@ article
     time.pull-right.muted.app-article-pubdate(pubdate, datetime=#{post.publishAt.toISOString()})
       | #{post.publishAt.toISOString().split('T')[0]}
     h2 #{post.title}
-  != post.body
-  footer
-    p: a(href='/post/#{post.slug}') Leia mais
     .row-fluid.app-article-meta
-      .span8 Tags
+      .span10
         ul.inline
+          li
+            i.icon-tags.muted(title='tags')
           each tag in post.tags
             li: a.label.label-info.app-article-tag(href='tags/') #{tag}
-      .span4 Comentários&nbsp;
-        span.badge.app-article-comment-count
+      .pull-right
+        i.icon-fixed-width.icon-comment.muted(title='comentários')
+        a.badge.app-article-comment-count(href='/post/#{post.slug}#comentarios')
           if post.comments
             | #{post.comments.length}
           else
             | 0
+  != post.body
+  footer
+    p: a.btn(href='/post/#{post.slug}') Leia mais
