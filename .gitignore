@@ -1,6 +1,7 @@
 # folders
 node_modules
 public/static/bower_components
+.c9revisions
 
 # files
 npm-debug.log
