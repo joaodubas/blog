@@ -11,7 +11,7 @@ app.use(express.static(path.join(__dirname, 'public')));
 app.use(express.cookieParser('i4mf4tty4ndh4ppy'));
 app.use(express.session());
 
-var boot = require('./lib/boot');
+var boot = require('./lib/boot.js');
 app.use(boot);
 
 app.listen(Number(process.env.PORT || '16152'));
