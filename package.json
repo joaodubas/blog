@@ -1,7 +1,7 @@
 {
   "name": "personal-log",
   "author": "João Paulo Dubas <joao.dubas@gmail.com>",
-  "version": "0.5.0",
+  "version": "0.5.1",
   "description": "Personal blog system",
   "private": true,
   "scripts": {
