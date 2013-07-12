@@ -4,13 +4,11 @@
   "version": "0.5.0",
   "description": "Personal blog system",
   "private": true,
-  "bin": {
-    "server": "NODE_PATH=lib node ./app.js"
-  },
   "scripts": {
-    "start": "NODE_PATH=lib node ./app.js",
+    "start": "node ./app.js",
     "prepublish": "./node_modules/.bin/bower install"
   },
+  "main": "./lib/boot.js",
   "keywords": [
     "blog",
     "post"
