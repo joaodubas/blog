@@ -6,7 +6,8 @@
   "private": true,
   "scripts": {
     "start": "node ./app.js",
-    "prepublish": "./node_modules/.bin/bower install"
+    "prepublish": "./node_modules/.bin/bower install",
+    "test": "./node_modules/.bin/mocha --reporter dot"
   },
   "main": "./lib/boot.js",
   "keywords": [
