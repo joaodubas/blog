@@ -2,30 +2,21 @@ var fs = require('fs');
 var path = require('path');
 var expect = require('expect.js');
 var data = require('../lib/data.js');
+var util = require('./util');
 
 describe('data', function () {
-  var dbName = 'testdb';
-  var dbPath = path.join(__dirname, '..', dbName);
-
   before(function (done) {
-    fs.mkdir(dbPath, done);
+    util.remakedir(done);
   });
-
-  after(function (done) {
-    var db = data.getDb();
-    db.dropDatabase(function () {
-      fs.rmdir(dbPath, done);
-    })
-  })
 
   describe('database', function () {
     it('provide a database', function () {
-      expect(data.getDb(dbName)).to.be.ok();
+      expect(data.getDb(util.dbName)).to.be.ok();
     });
   });
   
   describe('collection', function () {
-    var db = data.getDb(dbName);
+    var db = data.getDb(util.dbName);
     var collName = 'test';
 
     afterEach(function (done) {
@@ -35,5 +26,5 @@ describe('data', function () {
     it('provide access to the collection', function () {
       expect(data.getCollection(collName)).to.be.ok();
     });
-  })
+  });
 });
