@@ -214,6 +214,41 @@ describe('post', function () {
 });
   
   describe('get', function () {
+    beforeEach(function (done) {
+      var posts = [];
+      for (var i = 0; i < 10; i += 1) {
+        posts.push({
+          title: 'Post ' + i,
+          slug: 'post-' + i,
+          markdown: '## Post ' + i,
+          body: '<h2>Post ' + i + '</h2>',
+          createdAt: new Date(),
+          tags: ['post', i]
+        });
+      }
+      db.collection('posts').insert(posts, done);
+    });
+
+    it('by slug', function (done) {
+      post.get({
+        slug: 'post-0',
+        callback: function (err, item) {
+          expect(item).to.be.ok();
+          done();
+        }
+      });
+    });
+
+    it('pass null if no item match the query', function (done) {
+      post.get({
+        slug: 'post-10',
+        callback: function (err, item) {
+          expect(err).to.not.be.ok();
+          expect(item).to.not.be.ok();
+          done();
+        }
+      });
+    });
   });
   
   describe('update', function () {
