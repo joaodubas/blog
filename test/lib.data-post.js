@@ -1,5 +1,3 @@
-var fs = require('fs');
-var path = require('path');
 var expect = require('expect.js');
 var data = require('../lib/data.js');
 var util = require('./util');
@@ -12,7 +10,7 @@ describe('post', function () {
     util.remakedir(done);
   });
   
-  beforeEach(function (done) {
+  afterEach(function (done) {
     util.clearCollection('posts', done);
   });
 
@@ -122,7 +120,98 @@ describe('post', function () {
   });
 
   describe('list', function () {
-  });
+    beforeEach(function (done) {
+      var posts = [];
+      for (var i = 0; i < 10; i += 1) {
+        posts.push({
+          title: 'Post ' + i,
+          slug: 'post-' + i,
+          markdown: '## Post ' + i,
+          body: '<h2>Post ' + i + '</h2>',
+          createdAt: new Date(),
+          tags: ['post', i]
+        });
+      }
+      db.collection('posts').insert(posts, done);
+    });
+
+    it('get first five articles by default', function (done) {
+      var expectedSlugs = ['post-9', 'post-8', 'post-7', 'post-6', 'post-5'];
+      post.list({
+        callback: function (err, cursor) {
+          var items = [];
+          cursor.each(function (err, item) {
+            if (!item) {
+              expect(items.length).to.be.equal(5);
+              expect(items.map(function (item) {
+                return item.slug;
+              })).to.be.eql(expectedSlugs);
+              done();
+              return;
+            }
+            items.push(item);
+          });
+        }
+      });
+    });
+
+    it('get first page of items', function (done) {
+      var expectedSlugs = ['post-9', 'post-8', 'post-7', 'post-6', 'post-5'];
+      post.list({
+        page: 0,
+        callback: function (err, cursor) {
+          var items = [];
+          cursor.each(function (err, item) {
+            if (!item) {
+              expect(items.map(function (item) {
+                return item.slug;
+              })).to.be.eql(expectedSlugs);
+              done();
+              return;
+            }
+            items.push(item);
+          });
+        }
+      });
+    });
+
+    it('get second page of items', function (done) {
+      var expectedSlugs = ['post-4', 'post-3', 'post-2', 'post-1', 'post-0'];
+      post.list({
+        page: 1,
+        callback: function (err, cursor) {
+          var items = [];
+          cursor.each(function (err, item) {
+            if (!item) {
+              expect(items.map(function (item) {
+                return item.slug;
+              })).to.be.eql(expectedSlugs);
+              done();
+              return;
+            }
+            items.push(item);
+          });
+        }
+      });
+    });
+
+    it('get 10 items per page', function (done) {
+      var items = [];
+      post.list({
+        limit: 10,
+        callback: function (err, cursor) {
+          cursor.each(function (err, item) {
+            if (!item) {
+              expect(items.length).to.be.equal(10);
+              done();
+              return;
+            }
+            items.push(item);
+          });
+        }
+      });
+    });
+});
   
   describe('get', function () {
   });
