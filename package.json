@@ -7,7 +7,7 @@
   "scripts": {
     "start": "node ./app.js",
     "prepublish": "./node_modules/.bin/bower install",
-    "test": "./node_modules/.bin/mocha --reporter dot"
+    "test": "./node_modules/.bin/mocha --reporter dot; rm -rf testdb"
   },
   "main": "./lib/boot.js",
   "keywords": [
