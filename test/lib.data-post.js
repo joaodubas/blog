@@ -286,4 +286,78 @@ describe('post', function () {
       });
     });
   });
+
+  describe('comment', function () {
+    var data = {
+      title: 'Post',
+      slug: 'post',
+      markdown: '## Post',
+      body: '<h2>Post</h2>',
+      createdAt: new Date(),
+      tags: ['post']
+    };
+
+    beforeEach(function (done) {
+      post.create({
+        data: data,
+        callback: done
+      });
+    });
+    
+    it('add one', function (done) {
+      var comment = {
+        name: 'Test',
+        comment: 'Comment',
+        createdAt: new Date()
+      };
+      post.addComment({
+        slug: data.slug,
+        comment: comment,
+        callback: function (err, message) {
+          post.get({
+            slug: data.slug,
+            callback: function (err, item) {
+              expect(message).to.be.equal(1);
+              expect(item.comments[0]).to.be.eql(comment);
+              done();
+            }
+          });
+        }
+      });
+    });
+
+    it('order by date', function (done) {
+      var first = {
+        name: 'First',
+        comment: 'First',
+        createdAt: new Date(2013, 6, 25)
+      };
+      var second = {
+        name: 'Second',
+        comment: 'Second',
+        createdAt: new Date(2013, 6, 27)
+      };
+      
+      post.addComment({
+        slug: data.slug,
+        comment: first,
+        callback: function (err, firstMessage) {
+          post.addComment({
+            slug: data.slug,
+            comment: second,
+            callback: function (err, secondMessage) {
+              post.get({
+                slug: data.slug,
+                callback: function (err, item) {
+                  expect(item.comments[0]).to.be.eql(second);
+                  expect(item.comments[1]).to.be.eql(first);
+                  done();
+                }
+              });
+            }
+          });
+        }
+      });
+    });
+  });
 });
