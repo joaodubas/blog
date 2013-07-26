@@ -252,5 +252,38 @@ describe('post', function () {
   });
   
   describe('update', function () {
+    it('a post that exists', function (done) {
+      var data = {
+        title: 'Post',
+        slug: 'post',
+        markdown: '## Post',
+        body: '<h2>Post</h2>',
+        createdAt: new Date(),
+        tags: ['post']
+      };
+      post.create({
+        data: data,
+        callback: function (err, items) {
+          var newData = items[0];
+          newData.markdown = '## Post updated';
+          newData.body = '<h2>Post updated</h2>';
+          newData.tags = ['post', 'updated'];
+          post.update({
+            slug: data.slug,
+            data: newData,
+            callback: function (err, message) {
+              post.get({
+                slug: data.slug,
+                callback: function (err, item) {
+                  expect(message).to.be.equal(1);
+                  expect(item).to.be.eql(newData);
+                  done();
+                }
+              });
+            }
+          });
+        }
+      });
+    });
   });
 });
