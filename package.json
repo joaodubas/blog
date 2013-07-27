@@ -24,7 +24,8 @@
   "devDependencies": {
     "bower": "0.10.x",
     "expect.js": "0.2.x",
-    "mocha": "1.12.x"
+    "mocha": "1.12.x",
+    "supertest": "0.7.x"
   },
   "license": "MIT",
   "engine": {
