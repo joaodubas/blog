@@ -1,6 +1,9 @@
 article
   header
-    time.pull-right.muted.app-article-pubdate(pubdate, datetime=#{post.createdAt.toISOString()})
+    time.pull-right.muted.app-article-pubdate(
+      pubdate,
+      datetime=#{post.createdAt.toISOString()}
+    )
       | #{post.createdAt.toISOString().split('T')[0]}
     h2 #{post.title}
     .row-fluid.app-article-meta
@@ -35,6 +38,7 @@ article
           each comment in post.comments
             .app-comment
               i.muted
-                | #{comment.name} (#{comment.createdAt.toISOString().split('T')[0]})
+                | #{comment.name}
+                | (#{comment.createdAt.toISOString().split('T')[0]})
               .app-comment-body
                 | #{comment.comment}

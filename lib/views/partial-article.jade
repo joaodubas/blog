@@ -1,6 +1,9 @@
 article.app-article
   header
-    time.pull-right.muted.app-article-pubdate(pubdate, datetime=#{post.createdAt.toISOString()})
+    time.pull-right.muted.app-article-pubdate(
+      pubdate,
+      datetime=#{post.createdAt.toISOString()}
+    )
       | #{post.createdAt.toISOString().split('T')[0]}
     h2 #{post.title}
     .row-fluid.app-article-meta
