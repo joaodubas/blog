@@ -7,7 +7,8 @@
   "scripts": {
     "start": "node ./app.js",
     "prepublish": "./node_modules/.bin/bower install",
-    "test": "./node_modules/.bin/mocha --reporter dot; rm -rf testdb"
+    "test": "./node_modules/.bin/mocha --reporter dot; rm -rf testdb",
+    "coverage": "./node_modules/.bin/istanbul cover ./node_modules/.bin/_mocha"
   },
   "main": "./lib/boot.js",
   "keywords": [
@@ -25,7 +26,8 @@
     "bower": "0.10.x",
     "expect.js": "0.2.x",
     "mocha": "1.12.x",
-    "supertest": "0.7.x"
+    "supertest": "0.7.x",
+    "istanbul": "0.1.x"
   },
   "license": "MIT",
   "engine": {

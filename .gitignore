@@ -3,6 +3,7 @@ node_modules
 public/static/bower_components
 .c9revisions
 testdb
+coverage
 
 # files
 npm-debug.log
