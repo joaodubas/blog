@@ -7,9 +7,9 @@
   "scripts": {
     "start": "node ./app.js",
     "prepublish": "./node_modules/.bin/bower install",
-    "test": "./node_modules/.bin/mocha --reporter dot; rm -rf testdb",
-    "coverage": "./node_modules/.bin/istanbul cover ./node_modules/.bin/_mocha; rm -rf testdb",
-    "check-coverage": "./node_modules/.bin/istanbul check-coverage --statements 90 --branches 90 --lines 90 --functions 90"
+    "test": "make test",
+    "coverage": "make coverage",
+    "check-coverage": "make check-coverage"
   },
   "main": "./lib/boot.js",
   "keywords": [
