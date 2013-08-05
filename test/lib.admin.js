@@ -93,7 +93,7 @@ describe('admin', function () {
         };
 
         req(app)
-          .post('/admin/edit/post-one')
+          .put('/admin/edit/post-one')
           .send(post)
           .expect(302)
           .end(function (err, res) {
