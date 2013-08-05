@@ -28,6 +28,20 @@ para tal execute o comando:
 $ npm install
 ```
 
+### Teste e Coverage
+
+Para testar o código é possível rodar o seguinte comando no shell:
+
+```bash
+$ npm test
+```
+
+Para gerar o relatório de cobertura do código rode o comando:
+
+```bash
+$ npm run coverage
+```
+
 ## Uso
 
 Para iniciar o servidor de teste, rode o comando:
