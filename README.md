@@ -42,6 +42,12 @@ Para gerar o relatório de cobertura do código rode o comando:
 $ npm run coverage
 ```
 
+Após rodar o coverage, é possível avaliar a cobertura do código usando o comando:
+
+```bash
+$ npm run check-coverage
+```
+
 ## Uso
 
 Para iniciar o servidor de teste, rode o comando:
