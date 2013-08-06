@@ -4,13 +4,12 @@ MOCHA=./node_modules/.bin/mocha
 _MOCHA=./node_modules/.bin/_mocha
 ISTANBUL=./node_modules/.bin/istanbul
 THRESHOLD=80
-TESTDB=./testdb
 
-coverage:
+coverage: clean-coverage
 	@$(ISTANBUL) cover $(_MOCHA)
-	@$(MAKE) clean
+	@$(MAKE) clean-testdb
 
-check-coverage:
+check-coverage: coverage
 	@$(ISTANBUL) check-coverage  \
 		--statements $(THRESHOLD) \
 		--branches $(THRESHOLD) \
@@ -19,9 +18,14 @@ check-coverage:
 
 test:
 	@$(MOCHA) --reporter dot
-	@$(MAKE) clean
+	@$(MAKE) clean-testdb
 
-clean:
-	@rm -rf $(TESTDB)
+clean-testdb:
+	@rm -rf ./testdb
 
-.PHONY: test coverage check-coverage clean
+clean-coverage:
+	@rm -rf ./coverage
+
+clean: clean-testdb clean-coverage
+
+.PHONY: test coverage check-coverage clean clean-testdb clean-coverage
