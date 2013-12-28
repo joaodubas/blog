@@ -1,15 +1,11 @@
 {
-  "name": "personal-log",
+  "name": "personal-blog",
   "author": "João Paulo Dubas <joao.dubas@gmail.com>",
   "version": "0.5.2",
   "description": "Personal blog system",
   "private": true,
   "scripts": {
-    "start": "node ./app.js",
-    "prepublish": "./node_modules/.bin/bower install",
-    "test": "make test",
-    "coverage": "make coverage",
-    "check-coverage": "make check-coverage"
+    "start": "node --harmony ./app.js"
   },
   "main": "./lib/boot.js",
   "keywords": [
@@ -17,21 +13,18 @@
     "post"
   ],
   "dependencies": {
-    "express": "3.3.x",
-    "jade": "0.32.x",
-    "tingodb": "0.1.x",
-    "slug": "0.3.x",
-    "marked": "0.2.x"
+    "koa": "~0.1.1",
+    "koa-route": "~1.0.2",
+    "koa-static": "~1.4.0",
+    "koa-render": "~0.1.0",
+    "jade": "~0.35.0",
+    "multilevel": "~5.5.0"
   },
   "devDependencies": {
-    "bower": "0.10.x",
-    "expect.js": "0.2.x",
-    "mocha": "1.12.x",
-    "supertest": "0.7.x",
-    "istanbul": "0.1.x"
+    "koa-logger": "~1.1.0"
   },
   "license": "MIT",
   "engine": {
-    "node": ">=0.10.0"
+    "node": ">=0.11.0"
   }
 }
