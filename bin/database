@@ -1,0 +1,37 @@
+#!/usr/local/bin/node --harmony
+const net = require('net');
+const levelup = require('levelup');
+const multilevel = require('multilevel');
+
+const dbPath = process.env.DBPATH;
+const dbPort = process.env.DBPORT;
+
+const db = levelup(dbPath, {
+  db: require(adapter()),
+  valueEnconding: 'json'
+});
+
+net.createServer(
+  server
+).listen(
+  dbPort,
+  onBind
+);
+
+function server(conn) {
+  process.stdout.write('Server connected.\n');
+  conn.pipe(multilevel.server(db)).pipe(conn);
+}
+
+function onBind() {
+  process.stdout.write('Server bind on port 3000\n');
+}
+
+function adapter() {
+  var module = 'leveldown';
+  if (process.env.NODE_ENV && process.env.NODE_ENV === 'test') {
+    module = 'memdown';
+  }
+  process.stdout.write('Using module ' + module + '.\n');
+  return module;
+}

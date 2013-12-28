@@ -1,0 +1,24 @@
+{
+  "name": "personal-blog-database",
+  "author": "João Paulo Dubas <joao.dubas@gmail.com>",
+  "description": "Database for blog system",
+  "version": "0.1.0",
+  "private": "true",
+  "keywords": [
+    "leveldb",
+    "database",
+    "blog"
+  ],
+  "dependencies": {
+    "leveldown": "~0.10.2",
+    "levelup": "~0.18.2",
+    "multilevel": "~5.5.0"
+  },
+  "devDependencies": {
+    "memdown": "~0.6.0"
+  },
+  "license": "MIT",
+  "engine": {
+    "node": ">=0.10.0"
+  }
+}
