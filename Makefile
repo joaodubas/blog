@@ -35,6 +35,11 @@ DB_HOST_PORT=$(DB_PORT)
 DB_HOST_SUPERVISOR=9006
 DB_HOST_SSH=40026
 
+DB_TEST_HOST_PORT=4000
+DB_TEST_HOST_SUPERVISOR=9007
+DB_TEST_HOST_SSH=40027
+DB_TEST_NAME=blog-test-database
+
 install-server:
 	@cd $(SERVER) \
 	&& cp $(HOME)/.ssh/id_rsa.pub ./ \
@@ -113,6 +118,26 @@ start-database:
 stop-database:
 	@docker kill $(DB_NAME)
 	@docker rm $(DB_NAME)
+
+start-test-database:
+	@docker run \
+		-d \
+		-t \
+		-e NODE_ENV=test \
+		-v $(APP)/db:$(DB_DIR)/db \
+		-v $(ROOT)/bin:$(DB_DIR)/bin \
+		-v $(ROOT)/log:$(DB_DIR)/log \
+		-v $(ROOT)/supervisor/database:$(DOCKER_SUPERVISOR_HOOK) \
+		-p $(DB_TEST_HOST_PORT):$(DB_PORT) \
+		-p $(DB_TEST_HOST_SUPERVISOR):$(DOCKER_SUPERVISOR) \
+		-p $(DB_TEST_HOST_SSH):$(DOCKER_SSH) \
+		-w $(DB_DIR) \
+		-name $(DB_TEST_NAME) \
+		$(DB_APP)
+
+stop-test-database:
+	@docker kill $(DB_TEST_NAME)
+	@docker rm $(DB_TEST_NAME)
 
 start: start-server
 
