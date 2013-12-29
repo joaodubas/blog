@@ -1,30 +1,25 @@
-var fs = require('fs');
-var path = require('path');
-var expect = require('expect.js');
-var data = require('../lib/data.js');
-var util = require('./util');
+const fs = require('fs');
+const path = require('path');
+const data = require('../lib/data.js');
+const util = require('./util');
 
 describe('data', function () {
-  before(function (done) {
-    util.remakedir(done);
-  });
-
   describe('database', function () {
     it('provide a database', function () {
-      expect(data.getDb(util.dbName)).to.be.ok();
+      expect(data.db).to.exist;
     });
-  });
-  
-  describe('collection', function () {
-    var db = data.getDb(util.dbName);
-    var collName = 'test';
 
-    afterEach(function (done) {
-      db.dropCollection(collName, done);
+    it('provide a opened database', function () {
+      expect(data.db.isOpen()).to.be.true;
     });
-    
-    it('provide access to the collection', function () {
-      expect(data.getCollection(collName)).to.be.ok();
+
+    it('provide access methods', function () {
+      var methods = data.db.methods;
+      expect(methods).to.contain.keys('get', 'put', 'del');
+    });
+
+    it('provide direct access to `get`, `put`, `del`', function () {
+      expect(data).to.contain.keys('get', 'put', 'del');
     });
   });
 });

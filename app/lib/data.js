@@ -1,26 +1,15 @@
-var path = require('path');
-var engine = require('tingodb')({'searchInArray': true});
-var _db = null;
-var _collections = {};
+const multilevel = require('multilevel');
+const db = multilevel.client();
 
-module.exports.getDb = getDb;
-module.exports.getCollection = getCollection;
-module.exports.ObjectID = engine.ObjectID;
+module.exports.db = db;
+Object.keys(db.methods).forEach(function expose(key) {
+  module.exports[key] = db[key];
+});
 
-function getDb(name) {
-  name = name || 'db';
-  if (!_db) {
-    _db = new engine.Db(path.join(__dirname, '..', name), {});
-  }
-  return _db;
-}
+const net = require('net');
+const conn = net.connect({
+  port: Number(process.env.DATABASE_PORT_3000_TCP_PORT),
+  host: process.env.DATABASE_PORT_3000_TCP_ADDR
+});
 
-function getCollection(name) {
-  if (!_collections[name]) {
-    if (!_db) {
-      _db = getDb();
-    }
-    _collections[name] = _db.collection(name);
-  }
-  return _collections[name];
-}
+conn.pipe(db.createRpcStream()).pipe(conn);
