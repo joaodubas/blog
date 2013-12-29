@@ -2,11 +2,6 @@
 ROOT=$(CURDIR)
 APP=$(ROOT)/app
 
-MOCHA=$(ROOT)/node_modules/.bin/mocha
-_MOCHA=$(ROOT)/node_modules/.bin/_mocha
-ISTANBUL=$(ROOT)/node_modules/.bin/istanbul
-THRESHOLD=80
-
 DOCKER_SUPERVISOR_HOOK=/etc/supervisor/conf.d/hook.d
 DOCKER_SUPERVISOR=9001
 DOCKER_SSH=22
@@ -21,7 +16,12 @@ SERVER_NAME=blog-server
 SERVER_PORT=16152
 SERVER_HOST_PORT=$(SERVER_PORT)
 SERVER_HOST_SUPERVISOR=9005
-SERVER_HOST_SSH:40025
+SERVER_HOST_SSH=40025
+
+MOCHA=$(SERVER_DIR)/node_modules/.bin/mocha
+_MOCHA=$(SERVER_DIR)/node_modules/.bin/_mocha
+ISTANBUL=$(SERVER_DIR)/node_modules/.bin/istanbul
+THRESHOLD=80
 
 DB=$(ROOT)/docker/database
 DB_VERSION=`cat $(DB)/TAG`
@@ -33,7 +33,7 @@ DB_NAME=blog-database
 DB_PORT=3000
 DB_HOST_PORT=$(DB_PORT)
 DB_HOST_SUPERVISOR=9006
-DB_HOST_SSH:40026
+DB_HOST_SSH=40026
 
 install-server:
 	@cd $(SERVER) \
