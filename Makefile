@@ -153,30 +153,31 @@ shell: start-database
 		-link $(DB_NAME):database \
 		$(SERVER_APP) \
 		--harmony
+	@$(MAKE) stop-database
 
-coverage: clean-coverage
-	@cd $(APP)
-	@$(ISTANBUL) cover $(_MOCHA)
-	@$(MAKE) clean-testdb
+shell-test: start-test-database
+	@docker run \
+		-i \
+		-t \
+		-entrypoint /usr/local/bin/node \
+		-w $(SERVER_DIR) \
+		-v $(ROOT):$(SERVER_DIR) \
+		-link $(DB_TEST_NAME):database \
+		$(SERVER_APP) \
+		--harmony
+	@$(MAKE) stop-test-database
 
-check-coverage: coverage
-	@cd $(APP)
-	@$(ISTANBUL) check-coverage  \
-		--statements $(THRESHOLD) \
-		--branches $(THRESHOLD) \
-		--lines $(THRESHOLD) \
-		--functions $(THRESHOLD)
+test: start-test-database
+	@docker run \
+		-i \
+		-t \
+		-entrypoint $(MOCHA) \
+		-link $(DB_TEST_NAME):database \
+		-v $(ROOT):$(SERVER_DIR) \
+		-w $(SERVER_DIR)/app \
+		$(SERVER_APP) \
+		--reporter dot --require test/util/common $(FILES)
+	@$(MAKE) stop-test-database
 
-test:
-	@$(MOCHA) --reporter dot
-	@$(MAKE) clean-testdb
-
-clean-testdb:
-	@rm -rf $(APP)/testdb
-
-clean-coverage:
-	@rm -rf $(APP)/coverage
-
-clean: clean-testdb clean-coverage
-
-.PHONY: start-server start-database start stop-server stop-database shell test coverage check-coverage clean clean-testdb clean-coverage
+.PHONY: start-server start-database start stop-server stop-database
+.PHONY: start-test-database stop-test-database shell shell-test test
