@@ -7,8 +7,7 @@ const dbPath = process.env.DBPATH;
 const dbPort = process.env.DBPORT;
 
 const db = levelup(dbPath, {
-  db: require(adapter()),
-  valueEnconding: 'json'
+  db: require(adapter())
 });
 
 net.createServer(
@@ -19,11 +18,13 @@ net.createServer(
 );
 
 function server(conn) {
+  process.stdout.write('\n' + (new Date()).toISOString() + '\n');
   process.stdout.write('Server connected.\n');
   conn.pipe(multilevel.server(db)).pipe(conn);
 }
 
 function onBind() {
+  process.stdout.write('\n' + (new Date()).toISOString() + '\n');
   process.stdout.write('Server bind on port 3000\n');
 }
 
@@ -32,6 +33,7 @@ function adapter() {
   if (process.env.NODE_ENV && process.env.NODE_ENV === 'test') {
     module = 'memdown';
   }
+  process.stdout.write('\n' + (new Date()).toISOString() + '\n');
   process.stdout.write('Using module ' + module + '.\n');
   return module;
 }
