@@ -2,9 +2,13 @@ const multilevel = require('multilevel');
 const db = multilevel.client();
 
 module.exports.db = db;
-Object.keys(db.methods).forEach(function expose(key) {
-  module.exports[key] = db[key];
-});
+
+module.exports.getCollection = function getCollection(preffix) {
+  return {
+    find: function (filter, options, callback) {
+    }
+  };
+};
 
 const net = require('net');
 const conn = net.connect({
